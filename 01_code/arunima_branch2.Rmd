@@ -6,6 +6,10 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+#So if I add this edit to this file, will this edit show up in the main branch
+# Test to see if the file that we work with has to be named the same thing
+
+
 # load libraries
 library(tidyverse)
 library(haven)
@@ -20,6 +24,18 @@ summary(sec0b)
 # correlation coefficients of variables
 sec0b_cor <- cor(sec0b) 
 round(sec0b_cor, 2) 
+
+sec0c <- read_dta("sec0c.dta")
+View(sec0c)
+summary(sec0c)
+
+# correlation coefficients of variables
+sec0b_cor <- cor(sec0b) 
+round(sec0b_cor, 2) 
+
+# correlation coefficients of variables
+sec0c_cor <- cor(sec0c) 
+round(sec0c_cor, 2) 
 
 ```
 
