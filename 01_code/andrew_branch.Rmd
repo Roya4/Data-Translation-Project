@@ -1,0 +1,49 @@
+---
+title: "Andrew's Branch"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+# load libraries
+library(tidyverse)
+library(haven)
+
+# read a dta file:
+sec0a <- read_dta("02_raw_data/sec0a.dta")
+View(sec0a)
+summary(sec0a)
+
+# correlation coefficients of variables
+sec0a_cor <- cor(sec0a) 
+# round to 2 decimal points
+round(sec0a_cor, 2) 
+
+# regression of sec0a
+sec0a_reg <- lm(formula = region ~ dwell + eanum + loc2 + loc5 + loc3, data = sec0a)
+summary(sec0a_reg)
+
+# standardized errors:
+hist(rstandard(sec0a_reg),
+     xlab = "Standardized residuals")
+
+# residual vs. fitted
+plot(fitted(sec0a_reg), 
+     resid(sec0a_reg), 
+     xlab = "Fitted", 
+     ylab = "Residuals", 
+     title("Residual vs. Fitted - Regression 1"))
+
+```
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
