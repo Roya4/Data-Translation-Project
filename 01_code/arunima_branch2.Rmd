@@ -1,0 +1,45 @@
+---
+title: "Arunima's Branch2"
+author: "Arunima Roy"
+date: "11/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# load libraries
+library(tidyverse)
+library(haven)
+```
+
+
+```{r}
+sec0b <- read_dta("sec0b.dta")
+View(sec0b)
+summary(sec0b)
+
+# correlation coefficients of variables
+sec0b_cor <- cor(sec0b) 
+round(sec0b_cor, 2) 
+
+```
+
+
+```{r pressure, echo=FALSE}
+
+# regression of sec0b
+sec0b_reg <- lm(formula = region ~ eanum + district + nh + clust, data = sec0b)
+summary(sec0b_reg)
+
+# standardized errors:
+hist(rstandard(sec0b_reg),
+     xlab = "Standardized residuals")
+
+# residual vs. fitted
+plot(fitted(sec0b_reg), 
+     resid(sec0b_reg), 
+     xlab = "Fitted", 
+     ylab = "Residuals", 
+     title("Residual vs. Fitted - Regression 1"))
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
