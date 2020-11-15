@@ -13,9 +13,9 @@ library(haven)
 
 
 ```{r}
-sec0b <- read_dta("sec0b.dta")
-View(sec0b)
-summary(sec0b)
+sec0a <- read_dta("sec0a.dta")
+View(sec0a)
+summary(sec0a)
 
 # correlation coefficients of variables
 sec0b_cor <- cor(sec0b) 
